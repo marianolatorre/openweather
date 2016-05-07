@@ -238,7 +238,7 @@
 }
 
 - (void)configureDailyCell:(UITableViewCell *)cell weather:(NSDictionary *)dailyReport {
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:24];
     cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
     cell.textLabel.text = [dailyReport objectForKey:@"WeekDay"] ;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f° / %.0f°",((NSNumber *)dailyReport[@"maxMin"][@"max"]).floatValue, ((NSNumber *)dailyReport[@"maxMin"][@"max"]).floatValue];
