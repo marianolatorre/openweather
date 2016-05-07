@@ -10,7 +10,8 @@
 
 @interface MainReport : NSObject
 
-@property (nonatomic, copy) NSString *minTemp;
-@property (nonatomic, copy) NSString *maxTemp;
+@property (nonatomic, copy) NSNumber *temp;
+@property (nonatomic, copy) NSNumber *minTemp;
+@property (nonatomic, copy) NSNumber *maxTemp;
 
 @end

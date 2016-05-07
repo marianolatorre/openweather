@@ -9,17 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
 
-@protocol ForecastControllerDelegate
 
-- (void)forecastDataRetrieved:(NSArray *)results;
-- (void)forecastFailedWithError:(NSError *)error;
-
-@end
 
 @interface ForecastController : NSObject
 
-@property (nonatomic, weak) id<ForecastControllerDelegate> forecastControllerDelegate;
 
-- (void)retrieveForecast;
+- (void)mainMappingWithMapping:(RKObjectMapping *)mapping;
+
+- (void)weatherMappingWithMapping:(RKObjectMapping *)mapping;
+
+- (void)configureDateFormatter;
 
 @end

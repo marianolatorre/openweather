@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ForecastController.h"
 
-@interface ViewController : UIViewController <ForecastControllerDelegate>
+@interface ViewController : UIViewController <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 
 @end

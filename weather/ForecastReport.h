@@ -16,6 +16,6 @@
 @property (nonatomic, copy) NSString *dt;
 
 @property (nonatomic, strong) MainReport *mainReport;
-@property (nonatomic, strong) Weather *weather;
+@property (nonatomic, strong) NSArray *weather;
 
 @end

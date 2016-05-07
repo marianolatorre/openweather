@@ -11,5 +11,8 @@
 @interface Weather : NSObject
 
 @property (nonatomic, copy) NSString *icon;
+@property (nonatomic, copy) NSString *weatherDescription;
+
+- (NSString *)imageName;
 
 @end

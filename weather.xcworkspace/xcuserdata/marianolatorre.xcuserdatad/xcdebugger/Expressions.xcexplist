@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "+[FiveDayForecastController splitForecastByDay:]:FiveDayForecastController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewController tableView:numberOfRowsInSection:]:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.fiveDayForecast">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__50-[CurrentWeatherController retrieveCurrentWeather]_block_invoke:CurrentWeatherController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__29-[ViewController viewDidLoad]_block_invoke_2:ViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[FiveDayForecastController numberOfDays:]:FiveDayForecastController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__48+[FiveDayForecastController splitForecastByDay:]_block_invoke:FiveDayForecastController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewController configureHourlyCell:weather:]:ViewController.m">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
