@@ -44,7 +44,6 @@
 		70B57EAD1CDCCE0E00D0C784 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70B57EAC1CDCCE0E00D0C784 /* Assets.xcassets */; };
 		70B57EBB1CDCCE0E00D0C784 /* weatherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B57EBA1CDCCE0E00D0C784 /* weatherTests.m */; };
 		70B57ECA1CDCCEBF00D0C784 /* ForecastController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B57EC81CDCCEBF00D0C784 /* ForecastController.m */; };
-		70D55D721CDCD06900D3DA5A /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D55D711CDCD06900D3DA5A /* weather.json */; };
 		70D55D791CDCEE8E00D3DA5A /* MainReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D55D781CDCEE8E00D3DA5A /* MainReport.m */; };
 		70D55D7C1CDCEFDA00D3DA5A /* ForecastReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D55D7B1CDCEFDA00D3DA5A /* ForecastReport.m */; };
 		70D55D801CDD020600D3DA5A /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D55D7F1CDD020600D3DA5A /* Weather.m */; };
@@ -107,7 +106,6 @@
 		70B57EBC1CDCCE0E00D0C784 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70B57EC71CDCCEBF00D0C784 /* ForecastController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastController.h; sourceTree = "<group>"; };
 		70B57EC81CDCCEBF00D0C784 /* ForecastController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastController.m; sourceTree = "<group>"; };
-		70D55D711CDCD06900D3DA5A /* weather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weather.json; sourceTree = "<group>"; };
 		70D55D771CDCEE8E00D3DA5A /* MainReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainReport.h; sourceTree = "<group>"; };
 		70D55D781CDCEE8E00D3DA5A /* MainReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainReport.m; sourceTree = "<group>"; };
 		70D55D7A1CDCEFDA00D3DA5A /* ForecastReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastReport.h; sourceTree = "<group>"; };
@@ -204,7 +202,6 @@
 				46439AB11CDD212D00FFAC21 /* Assets */,
 				70D55D761CDCED3300D3DA5A /* Model */,
 				70D55D7D1CDCFA1400D3DA5A /* controller */,
-				70D55D711CDCD06900D3DA5A /* weather.json */,
 				70B57EA31CDCCE0E00D0C784 /* AppDelegate.h */,
 				70B57EA41CDCCE0E00D0C784 /* AppDelegate.m */,
 				70B57EA61CDCCE0E00D0C784 /* ViewController.h */,
@@ -329,6 +326,7 @@
 				TargetAttributes = {
 					70B57E9C1CDCCE0E00D0C784 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = NYC4FDV8PV;
 					};
 					70B57EB51CDCCE0E00D0C784 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -372,7 +370,6 @@
 				46439AE71CDD249900FFAC21 /* weather-snow.png in Resources */,
 				46439AE11CDD249900FFAC21 /* weather-rain.png in Resources */,
 				46439ADF1CDD249900FFAC21 /* weather-rain-night.png in Resources */,
-				70D55D721CDCD06900D3DA5A /* weather.json in Resources */,
 				46439ADE1CDD249900FFAC21 /* weather-moon@2x.png in Resources */,
 				46439ADC1CDD249900FFAC21 /* weather-mist@2x.png in Resources */,
 				46439AE91CDD249900FFAC21 /* weather-tstorm.png in Resources */,
@@ -577,9 +574,10 @@
 			baseConfigurationReference = D0C488A3961A9EEBF3CAF580 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = weather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ig.weather.weather;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marianolatorre.weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -590,9 +588,10 @@
 			baseConfigurationReference = FFEBEC962E628733B57FC8D9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = weather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ig.weather.weather;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marianolatorre.weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
