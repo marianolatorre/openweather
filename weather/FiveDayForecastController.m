@@ -15,8 +15,7 @@
 
 
 - (void)retrieveFiveDayForecastWithCompletionBlock:(void (^)(NSArray *))successBlock failureBlock:(void (^)(NSError *))failureBlock{
-    
-    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
+    //RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
     
     RKObjectMapping *forecastMapping = [RKObjectMapping mappingForClass:[ForecastReport class]];
     [forecastMapping addAttributeMappingsFromDictionary:@{
@@ -40,7 +39,6 @@
     
     RKObjectRequestOperation *operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
     
-    //    __weak typeof(self) weakSelf = self;
     [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
         if (successBlock){
             successBlock([[result array] copy]);
@@ -54,24 +52,6 @@
     [operation start];
     
 }
-
-//+ (NSInteger)numberOfDays:(NSArray *)array{
-//    if (! [array count] ) {
-//        return 0;
-//    }
-//    
-//    NSDate *firstDate = [[array firstObject] date];
-//    NSDate *lastDate = [[array lastObject] date];
-//    
-//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian] ;
-//    NSDateComponents *components = [calendar components:NSCalendarUnitDay
-//                                               fromDate:firstDate
-//                                                 toDate:lastDate
-//                                                options:0];
-//    
-//    return components.day+1;
-//}
-
 
 + (NSArray *)splitForecastByDay:(NSArray *)forecastArray{
     
