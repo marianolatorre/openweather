@@ -23,6 +23,12 @@
 @property (nonatomic, strong) UIImageView *blurredImageView;
 @property (nonatomic, strong) UITableView *tableView;
 
+@property (nonatomic, strong) UILabel *temperatureLabel;
+@property (nonatomic, strong) UILabel *hiloLabel;
+@property (nonatomic, strong) UILabel *cityLabel;
+@property (nonatomic, strong) UILabel *conditionsLabel;
+@property (nonatomic, strong) UIImageView *iconView;
+
 @end
 
 @implementation ViewController
@@ -51,6 +57,12 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorColor = [UIColor colorWithWhite:1 alpha:0.2];
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.tintColor = [UIColor whiteColor];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+    
     [self.view addSubview:self.tableView];
     
     self.hourlyFormatter = [[NSDateFormatter alloc] init];
@@ -75,79 +87,91 @@
     self.tableView.tableHeaderView = header;
     
     // bottom left
-    UILabel *temperatureLabel = [[UILabel alloc] initWithFrame:temperatureFrame];
-    temperatureLabel.backgroundColor = [UIColor clearColor];
-    temperatureLabel.textColor = [UIColor whiteColor];
-    temperatureLabel.text = @"0°";
-    temperatureLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:120];
-    [header addSubview:temperatureLabel];
+    self.temperatureLabel = [[UILabel alloc] initWithFrame:temperatureFrame];
+    self.temperatureLabel.backgroundColor = [UIColor clearColor];
+    self.temperatureLabel.textColor = [UIColor whiteColor];
+    self.temperatureLabel.text = @"0°";
+    self.temperatureLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:120];
+    [header addSubview:self.temperatureLabel];
     
     // bottom left
-    UILabel *hiloLabel = [[UILabel alloc] initWithFrame:hiloFrame];
-    hiloLabel.backgroundColor = [UIColor clearColor];
-    hiloLabel.textColor = [UIColor whiteColor];
-    hiloLabel.text = @"0° / 0°";
-    hiloLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:28];
-    [header addSubview:hiloLabel];
+    self.hiloLabel = [[UILabel alloc] initWithFrame:hiloFrame];
+    self.hiloLabel.backgroundColor = [UIColor clearColor];
+    self.hiloLabel.textColor = [UIColor whiteColor];
+    self.hiloLabel.text = @"0° / 0°";
+    self.hiloLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:28];
+    [header addSubview:self.hiloLabel];
     
     // top
-    UILabel *cityLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width-20, 80)];
-    cityLabel.backgroundColor = [UIColor clearColor];
-    cityLabel.textColor = [UIColor whiteColor];
-    cityLabel.text = @"Loading...";
-    cityLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:50];
-    cityLabel.textAlignment = NSTextAlignmentRight;
-    [header addSubview:cityLabel];
+    self.cityLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width-20, 80)];
+    self.cityLabel.backgroundColor = [UIColor clearColor];
+    self.cityLabel.textColor = [UIColor whiteColor];
+    self.cityLabel.text = @"Loading...";
+    self.cityLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:50];
+    self.cityLabel.textAlignment = NSTextAlignmentRight;
+    [header addSubview:self.cityLabel];
     
-    UILabel *conditionsLabel = [[UILabel alloc] initWithFrame:conditionsFrame];
-    conditionsLabel.backgroundColor = [UIColor clearColor];
-    conditionsLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
-    conditionsLabel.textColor = [UIColor whiteColor];
-    [header addSubview:conditionsLabel];
+    self.conditionsLabel = [[UILabel alloc] initWithFrame:conditionsFrame];
+    self.conditionsLabel.backgroundColor = [UIColor clearColor];
+    self.conditionsLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+    self.conditionsLabel.textColor = [UIColor whiteColor];
+    [header addSubview:self.conditionsLabel];
     
     // bottom left
-    UIImageView *iconView = [[UIImageView alloc] initWithFrame:iconFrame];
-    iconView.contentMode = UIViewContentModeScaleAspectFit;
-    iconView.backgroundColor = [UIColor clearColor];
-    [header addSubview:iconView];
+    self.iconView = [[UIImageView alloc] initWithFrame:iconFrame];
+    self.iconView.contentMode = UIViewContentModeScaleAspectFit;
+    self.iconView.backgroundColor = [UIColor clearColor];
+    [header addSubview:self.iconView];
 
+    [self refresh:nil];
+}
+
+- (void) refresh:(UIRefreshControl *)refreshControl{
+    // TODO: improve refresh feedback--> refresh in a dispatch group to check all tasks ended and not just one.
     
     CurrentWeatherController *currentWeatherController = [CurrentWeatherController new];
     [currentWeatherController retrieveCurrentWeatherWithCompletionBlock:^(ForecastReport *report) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([[report weather] count]) {
                 Weather *weather = [report weather][0];
-                temperatureLabel.text = [NSString stringWithFormat:@"%.0f°",[[report mainReport] temp].floatValue];
-                iconView.image = [UIImage imageNamed:[weather imageName]];
-                conditionsLabel.text = [weather weatherDescription];
-                cityLabel.text = @"London";
-                hiloLabel.text = [NSString  stringWithFormat:@"%.0f° / %.0f°",[[report mainReport] maxTemp].floatValue,[[report mainReport] minTemp].floatValue];
+                self.temperatureLabel.text = [NSString stringWithFormat:@"%.0f°",[[report mainReport] temp].floatValue];
+                self.iconView.image = [UIImage imageNamed:[weather imageName]];
+                self.conditionsLabel.text = [weather weatherDescription];
+                self.cityLabel.text = @"London";
+                self.hiloLabel.text = [NSString  stringWithFormat:@"%.0f° / %.0f°",[[report mainReport] maxTemp].floatValue,[[report mainReport] minTemp].floatValue];
+                [refreshControl endRefreshing];
             }
         });
         
     } failureBlock:^(NSError *error) {
-         dispatch_async(dispatch_get_main_queue(), ^{
-             cityLabel.text = @"Loading...";
-             temperatureLabel.text = @"-";
-             iconView.image = nil;
-             conditionsLabel.text = @"-";
-         });
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.cityLabel.text = @"Loading...";
+            self.temperatureLabel.text = @"-";
+            self.iconView.image = nil;
+            self.conditionsLabel.text = @"-";
+            [refreshControl endRefreshing];
+        });
     }];
     
     FiveDayForecastController *forecastController = [FiveDayForecastController new];
-
+    
     [forecastController retrieveFiveDayForecastWithCompletionBlock:^(NSArray *forecastArray) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.fiveDayForecast = [FiveDayForecastController processFiveDayForecastReport:forecastArray];
             [self.tableView reloadData];
+            [refreshControl endRefreshing];
         });
     } failureBlock:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.fiveDayForecast = nil;
             [self.tableView reloadData];
+            [refreshControl endRefreshing];
         });
     }];
+
+
 }
+
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
