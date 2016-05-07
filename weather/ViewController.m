@@ -33,6 +33,17 @@
 
 @implementation ViewController
 
+
+/**
+ 
+ Design here is based on Yahoo weather app adapted to the new data requirements.
+ 
+ Assets borrowed from RAYWENDERLICH website.
+ 
+ 
+ 
+ **/
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

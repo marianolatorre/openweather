@@ -55,6 +55,8 @@
 
 + (NSArray *)splitForecastByDay:(NSArray *)forecastArray{
     
+    //TODO: uni test this
+    
     __block NSArray *forecastPerDay = @[[NSMutableArray new],
                                         [NSMutableArray new],
                                         [NSMutableArray new],
@@ -85,6 +87,8 @@
 }
 
 + (NSDictionary *)maxMinTempInForecastPeriod:(NSArray *)forecastArray{
+    //TODO: uni test this
+    
     float xmax = -MAXFLOAT;
     float xmin = MAXFLOAT;
     
@@ -102,6 +106,12 @@
 }
 
 + (NSArray *)processFiveDayForecastReport:(NSArray *)forecastArray{
+    //TODO: uni test this
+    
+    // needs extra safety checks, edge cases not covered
+    
+    // using dictionary to speed up prototype, might be better to have proper object models for the expected report format.
+    
     NSArray *splittedByDayForecast = [FiveDayForecastController splitForecastByDay:forecastArray];
     
     __block NSMutableArray *processedReport = [NSMutableArray new];
