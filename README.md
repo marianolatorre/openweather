@@ -1,4 +1,5 @@
-# openweather
+# OpenWeather app
+
 Open weather 5 day forecast iphone app
 
 
