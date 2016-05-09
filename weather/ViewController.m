@@ -217,7 +217,6 @@
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.detailTextLabel.textColor = [UIColor whiteColor];
     
@@ -231,15 +230,15 @@
     return cell;
 }
 
-- (void)configureHeaderCell:(UITableViewCell *)cell title:(NSString *)title {
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
-    cell.textLabel.backgroundColor = [UIColor redColor];
-    cell.textLabel.text = title;
-    cell.detailTextLabel.text = @"";
-    cell.imageView.image = nil;
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        return 60;
+    }
+    return 40;
 }
 
 - (void)configureHourlyCell:(UITableViewCell *)cell weather:(ForecastReport *)report {
+    cell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
     cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
     cell.textLabel.text = [self.hourlyFormatter stringFromDate:[report date]];
@@ -249,8 +248,9 @@
 }
 
 - (void)configureDailyCell:(UITableViewCell *)cell weather:(NSDictionary *)dailyReport {
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:24];
-    cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+    cell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:24];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:21];
     cell.textLabel.text = [dailyReport objectForKey:@"WeekDay"] ;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f° / %.0f°",((NSNumber *)dailyReport[@"maxMin"][@"max"]).floatValue, ((NSNumber *)dailyReport[@"maxMin"][@"max"]).floatValue];
     cell.imageView.image = nil;
