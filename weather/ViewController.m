@@ -252,7 +252,7 @@
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:24];
     cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:21];
     cell.textLabel.text = [dailyReport objectForKey:@"WeekDay"] ;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f° / %.0f°",((NSNumber *)dailyReport[@"maxMin"][@"max"]).floatValue, ((NSNumber *)dailyReport[@"maxMin"][@"max"]).floatValue];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f° / %.0f°",((NSNumber *)dailyReport[@"maxMin"][@"max"]).floatValue, ((NSNumber *)dailyReport[@"maxMin"][@"min"]).floatValue];
     cell.imageView.image = nil;
     cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
 }
