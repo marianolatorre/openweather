@@ -1,4 +1,5 @@
-# openweather
+# OpenWeather app
+
 Open weather 5 day forecast iphone app
 
 
@@ -22,4 +23,5 @@ Tested on Xcode 7.3.1 and iOS 9.3.1
 Please reffer to the "Issues" secion in this page.
 
 # Screenshots #
-
+ ![picture alt](https://raw.githubusercontent.com/marianolatorre/openweather/develop/SS/2.png )
+ ![picture alt](https://raw.githubusercontent.com/marianolatorre/openweather/develop/SS/1.png )
